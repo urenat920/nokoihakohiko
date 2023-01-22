@@ -18,13 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//ログイン状態確認後に初期画面へ遷移します。
 Route::get('/index', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('index');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
